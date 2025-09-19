@@ -16,26 +16,7 @@ spec:
     spec:
       containers:
         - name: seg-api
-          image: seg-api:local          # uses your local Docker image
-          imagePullPolicy: IfNotPresent
+          image: ghcr.io/atharva2901/real-time-segmentation:main
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
-          resources:
-            requests:
-              cpu: "250m"
-              memory: "512Mi"
-            limits:
-              cpu: "500m"
-              memory: "1Gi"
-          livenessProbe:
-            httpGet:
-              path: /healthz
-              port: 8000
-            initialDelaySeconds: 10
-            periodSeconds: 10
-          readinessProbe:
-            httpGet:
-              path: /healthz
-              port: 8000
-            initialDelaySeconds: 5
-            periodSeconds: 5
